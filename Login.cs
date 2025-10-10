@@ -5,7 +5,7 @@ namespace AdminKütüphane
 {
     public partial class Login : Form
     {
-        private Admin admin;
+        private AdminManager admin;
         private int counter = 0;
 
 
@@ -14,28 +14,8 @@ namespace AdminKütüphane
             InitializeComponent();
 
             // YENİ KOD BAŞLANGICI: Sadece Repository sınıfını çağırıyoruz
-            AdminRepository repository = new AdminRepository();
-            try
-            {
-                this.admin = repository.GetAdminCredentials();
-            }
-            catch (FileNotFoundException ex)
-            {
-                // Dosya bulunamazsa kullanıcıya bildir ve uygulamayı kapat
-                MessageBox.Show(ex.Message, "Kritik Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Application.Exit() veya Formu kapatmak yerine, burada uygulamanın açılmasını engelleriz.
-                // Program.cs'deki mantık zaten bu form kapanınca tüm uygulamayı kapatıyor.
-                // Eğer bu form DialogResult.OK dönmezse, MainPage açılmaz.
-                this.DialogResult = DialogResult.Abort;
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                // Diğer kritik hataları bildir
-                MessageBox.Show("Sistem yöneticisi bilgileri yüklenirken beklenmedik bir hata oluştu:\n" + ex.Message, "Kritik Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.DialogResult = DialogResult.Abort;
-                this.Close();
-            }
+            admin = new AdminManager();
+            
             // YENİ KOD BİTİŞİ
 
 
@@ -45,9 +25,11 @@ namespace AdminKütüphane
         {
             string id = idinput.Text;
             string password = passwordinput.Text;
-            int ID;
 
-            if (int.Parse(id) == 1 && password == "")
+            idinput.BackColor = SystemColors.Window;
+            passwordinput.BackColor = SystemColors.Window;
+
+            if (id == "1" && password == "")
             {
                 // Geliştirici modu
                 this.DialogResult = DialogResult.OK;
@@ -55,43 +37,47 @@ namespace AdminKütüphane
                 return;
             }
 
-            if (counter >= 3)
+            if (counter >= 2)
             {
                 MessageBox.Show("Maksimum giriş denemesine ulaştınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.DialogResult = DialogResult.Abort;
                 this.Close(); // Formu kapatır, uygulama Form1 ana form ise program kapanır
                 return;
             }
 
-            if (string.IsNullOrEmpty(id))
-            {
-                idinput.BackColor = Color.LightPink;
-                Alert.Text = "Lütfen ID alanını boş bırakmayınız!";
-                return;
-            }
+            var (resultCode, message) = admin.Authenticate(id, password);
 
-            if (string.IsNullOrEmpty(password))
+            // Gelen sonuca göre UI'ı güncelle
+            switch (resultCode)
             {
-                passwordinput.BackColor = Color.LightPink;
-                Alert.Text = "Lütfen şifre alanını boş bırakmayınız!";
-                return;
-            }
+                case "SUCCESS":
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                    break;
 
-            if (!int.TryParse(id, out ID) || !admin.SifreKontrol(password) || !admin.IdKontrol(ID))
-            {
-                Alert.Text = "Hatalı giriş yaptınız! Lütfen tekrar deneyiniz.";
-                passwordinput.BackColor = Color.LightPink;
-                idinput.BackColor = Color.LightPink;
-                //passwordinput.Clear();
-                //idinput.Clear();
-                counter++;
-                return;
-            }
-            else 
-            {
-                // Login başarılı → Program.cs'de MainPage açılacak
-                this.DialogResult = DialogResult.OK;
-                this.Close(); // LoginForm kapanır 
-                return;
+                case "ID_EMPTY":
+                    Alert.Text = message;
+                    idinput.BackColor = Color.LightPink;
+                    break;
+
+                case "PASSWORD_EMPTY":
+                    Alert.Text = message;
+                    passwordinput.BackColor = Color.LightPink;
+                    break;
+
+                case "INVALID_CREDENTIALS":
+                case "INVALID_ID_FORMAT":
+                    Alert.Text = message;
+                    idinput.BackColor = Color.LightPink;
+                    passwordinput.BackColor = Color.LightPink;
+                    counter++;
+                    break;
+
+                case "CRITICAL_ERROR":
+                    MessageBox.Show(message, "Kritik Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.Abort;
+                    this.Close();
+                    break;
             }
         }
 

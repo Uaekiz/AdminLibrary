@@ -7,10 +7,21 @@ namespace AdminKütüphane.Classes
     {
         // AdminManager, DAL katmanını (Repository'yi) kullanır.
         private AdminRepository _repository;
+        private Admin _admin;
 
         public AdminManager()
         {
             _repository = new AdminRepository();
+            try
+            {
+                _admin = _repository.GetAdminCredentials();
+            }
+            catch (Exception)
+            {
+                // Hata oluşursa, _admin nesnesi null kalacak.
+                // Bu durumu Authenticate metodunda kontrol edeceğiz.
+                _admin = null;
+            }
         }
 
         // ----------------------------------------------------
@@ -20,41 +31,37 @@ namespace AdminKütüphane.Classes
         /// <summary>
         /// ID ve şifre kontrolünü yaparak Admin nesnesini döndürür.
         /// </summary>
-        //public Admin Authenticate(string idGirdi, string sifreGirdi, out string? errorMessage)
-        //{
-        //    errorMessage = null;
+        public (string, string) Authenticate(string idGirdi, string sifreGirdi)
+        {
+            if (_admin == null)
+            {
+                return ("CRITICAL_ERROR", "Sistem yöneticisi bilgileri yüklenemedi.");
+            }
 
-        //    // 1. Veri Alımı (DAL kullanılır)
-        //    Admin admin;
-        //    try
-        //    {
-        //        admin = _repository.GetAdminCredentials();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Veri okuma hatasını direkt döndür
-        //        errorMessage = "Sistem verileri yüklenirken kritik bir hata oluştu: " + ex.Message;
-        //        return null;
-        //    }
+            if (string.IsNullOrEmpty(idGirdi))
+            {
+                return ("ID_EMPTY", "Lütfen ID alanını boş bırakmayınız!");
+            }
 
-        //    // 2. ID ve Şifre Kontrolü (Eski Admin metotlarının mantığı burada birleşti)
-        //    if (!int.TryParse(idGirdi, out int parsedId))
-        //    {
-        //        errorMessage = "ID sayısal bir değer olmalıdır!";
-        //        return null;
-        //    }
+            if (string.IsNullOrEmpty(sifreGirdi))
+            {
+                return ("PASSWORD_EMPTY", "Lütfen şifre alanını boş bırakmayınız!");
+            }
 
-        //    // Kontrol: Hem ID hem de Şifre doğru mu?
-        //    if (parsedId == admin.AdminId && sifreGirdi == admin.Sifre)
-        //    {
-        //        return admin; // Başarılı
-        //    }
-        //    else
-        //    {
-        //        errorMessage = "Hatalı ID veya Şifre!";
-        //        return null; // Başarısız
-        //    }
-        //}
+            if (!int.TryParse(idGirdi, out int parsedId))
+            {
+                return ("INVALID_ID_FORMAT", "Hatalı giriş yaptınız! Lütfen tekrar deneyiniz.");
+            }
+
+            if (_admin.IdKontrol(parsedId) && _admin.SifreKontrol(sifreGirdi))
+            {
+                return ("SUCCESS", "Giriş başarılı!");
+            }
+            else
+            {
+                return ("INVALID_CREDENTIALS", "Hatalı ID veya şifre! Lütfen tekrar deneyiniz.");
+            }
+        }
 
         // ----------------------------------------------------
         // Şifre Değiştirme Mantığı (Eski Admin.cs'den taşındı ve Forms uyumlu hale getirildi)
