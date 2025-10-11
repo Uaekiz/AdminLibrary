@@ -21,7 +21,7 @@ namespace AdminKütüphane
 
         public void ShowPage(UserControl page, string title)
         {
-            //PanelContainer.Dock = DockStyle.Fill;
+            PanelContainer.Dock = DockStyle.Fill;
             PanelContainer.Controls.Clear();      // Paneli temizle
             page.Dock = DockStyle.Fill;           // Paneli doldur
             PanelContainer.Controls.Add(page);    // UserControl’ü ekle
