@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace AdminKütüphane.DAL
 {
@@ -24,7 +25,7 @@ namespace AdminKütüphane.DAL
                 return uyeler;
             }
 
-            var satirlar = File.ReadAllLines(UyeFilePath);
+            var satirlar = File.ReadAllLines(UyeFilePath, Encoding.UTF8);
 
             foreach (var satir in satirlar)
             {

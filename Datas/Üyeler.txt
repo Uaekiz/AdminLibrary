@@ -1,18 +1,18 @@
-Ahmet Yılmaz;17482935;3;Kürk Mantolu Madonna,Tutunamayanlar,Simyacı
-Ayşe Kaya;25839174;2;1984,Huzur
+Ahmet YÄ±lmaz;17482935;3;KÃ¼rk Mantolu Madonna,Tutunamayanlar,SimyacÄ±
+AyÅŸe Kaya;25839174;2;1984,Huzur
 Mehmet Demir;39184720;0;
-Fatma Aydın;47210938;4;Sapiens İnsan Türünün Kısa Bir Tarihi,Yüzyıllık Yalnızlık,Suç ve Ceza,Kırmızı Pazartesi
-Ali Şahin;58392017;1;Bir Bilim Adamının Romanı
-Zeynep Öztürk;64710293;5;Harry Potter ve Felsefe Taşı,Satranç,Körlük,Kendi Gök Kubbemiz,Puslu Kıtalar Atlası
-Emre Çelik;75192048;2;Hayvan Çiftliği,Tehlikeli Oyunlar
-Canan Korkmaz;81350692;3;Çalıkuşu,Bilinmeyen Bir Kadının Mektubu,Dokuzuncu Hariciye Koğuşu
+Fatma AydÄ±n;47210938;4;Sapiens Ä°nsan TÃ¼rÃ¼nÃ¼n KÄ±sa Bir Tarihi,YÃ¼zyÄ±llÄ±k YalnÄ±zlÄ±k,SuÃ§ ve Ceza,KÄ±rmÄ±zÄ± Pazartesi
+Ali Åahin;58392017;1;Bir Bilim AdamÄ±nÄ±n RomanÄ±
+Zeynep Ã–ztÃ¼rk;64710293;5;Harry Potter ve Felsefe TaÅŸÄ±,SatranÃ§,KÃ¶rlÃ¼k,Kendi GÃ¶k Kubbemiz,Puslu KÄ±talar AtlasÄ±
+Emre Ã‡elik;75192048;2;Hayvan Ã‡iftliÄŸi,Tehlikeli Oyunlar
+Canan Korkmaz;81350692;3;Ã‡alÄ±kuÅŸu,Bilinmeyen Bir KadÄ±nÄ±n Mektubu,Dokuzuncu Hariciye KoÄŸuÅŸu
 Hasan Aksoy;92748310;0;
-Elif Güneş;14839275;4;Yaban,Karamazov Kardeşler,Koku,Fahrenheit 451
-John Smith;25719483;2;Dune,Kayıp Kız
-Selin Arslan;34619287;3;İçimizdeki Şeytan,Masumiyet Müzesi,Küçük Prens
-Murat Toprak;47210939;1;Benim Adım Kırmızı
-Ece Kaplan;58392018;5;Aşk ve Gurur,Hacı Murat,Saatleri Ayar Eden,Korkuyu Beklerken,Gökyüzü
-Burak Doğan;69182730;0;
-Derya Yıldız;75192049;2;Kuyucaklı Yusuf,Yeraltından Notlar
-Sophie Müller;81350693;3;Frankenstein,Notre Dame’ın Kamburu,1984
-Kemal Uçar;92748311;4;Bir Ömür Nasıl Yaşanır,Kara Kitap,Simyacı,Çöldeki Penguen
+Elif GÃ¼neÅŸ;14839275;4;Yaban,Karamazov KardeÅŸler,Koku,Fahrenheit 451
+John Smith;25719483;2;Dune,KayÄ±p KÄ±z
+Selin Arslan;34619287;3;Ä°Ã§imizdeki Åeytan,Masumiyet MÃ¼zesi,KÃ¼Ã§Ã¼k Prens
+Murat Toprak;47210939;1;Benim AdÄ±m KÄ±rmÄ±zÄ±
+Ece Kaplan;58392018;5;AÅŸk ve Gurur,HacÄ± Murat,Saatleri Ayar Eden,Korkuyu Beklerken,GÃ¶kyÃ¼zÃ¼
+Burak DoÄŸan;69182730;0;
+Derya YÄ±ldÄ±z;75192049;2;KuyucaklÄ± Yusuf,YeraltÄ±ndan Notlar
+Sophie MÃ¼ller;81350693;3;Frankenstein,Notre Dameâ€™Ä±n Kamburu,1984
+Kemal UÃ§ar;92748311;4;Bir Ã–mÃ¼r NasÄ±l YaÅŸanÄ±r,Kara Kitap,SimyacÄ±,Ã‡Ã¶ldeki Penguen

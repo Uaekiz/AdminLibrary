@@ -28,33 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dataGridViewUyeler = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUyeler).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewUyeler
             // 
-            dataGridView1.ColumnHeadersHeight = 29;
-            dataGridView1.Location = new Point(91, 34);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1500, 940);
-            dataGridView1.TabIndex = 0;
+            dataGridViewUyeler.ColumnHeadersHeight = 29;
+            dataGridViewUyeler.Location = new Point(50, 50);
+            dataGridViewUyeler.Name = "dataGridViewUyeler";
+            dataGridViewUyeler.ReadOnly = true;
+            dataGridViewUyeler.RowHeadersWidth = 51;
+            dataGridViewUyeler.Size = new Size(1800, 900);
+            dataGridViewUyeler.TabIndex = 0;
             // 
             // MemberListPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewUyeler);
             Name = "MemberListPage";
             Size = new Size(1900, 1000);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUyeler).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewUyeler;
     }
 }

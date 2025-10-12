@@ -13,28 +13,26 @@ namespace AdminKütüphane.DAL // Data Access Layer (Veri Erişim Katmanı) içi
         {
             try
             {
-                // En güvenilir ve kaynakları yöneten okuma şekli: using bloğu.
-                using (StreamReader sra = new StreamReader(AdminFilePath))
+               
+                string AdminInformation = File.ReadLines(AdminFilePath, Encoding.UTF8).FirstOrDefault() ?? "";
+
+                if (string.IsNullOrEmpty(AdminInformation))
                 {
-                    string AdminInformation = sra.ReadLine() ?? "";
-
-                    if (string.IsNullOrEmpty(AdminInformation))
-                    {
-                        // Boş bir dosya veya geçersiz format durumunda özel bir hata fırlatılabilir.
-                        throw new InvalidDataException("Admin bilgileri dosyada bulunamadı veya boş.");
-                    }
-
-                    string[] AInfo = AdminInformation.Split(';');
-
-                    // Verinin doğru sayıda parçaya ayrıldığından emin ol.
-                    if (AInfo.Length < 4)
-                    {
-                        throw new InvalidDataException("Admin bilgileri dosyada eksik veya hatalı formatta.");
-                    }
-
-                    // Admin nesnesini oluştur ve doldur
-                    return new Admin(AInfo);
+                    // Boş bir dosya veya geçersiz format durumunda özel bir hata fırlatılabilir.
+                    throw new InvalidDataException("Admin bilgileri dosyada bulunamadı veya boş.");
                 }
+
+                string[] AInfo = AdminInformation.Split(';');
+
+                // Verinin doğru sayıda parçaya ayrıldığından emin ol.
+                if (AInfo.Length < 4)
+                {
+                    throw new InvalidDataException("Admin bilgileri dosyada eksik veya hatalı formatta.");
+                }
+
+                // Admin nesnesini oluştur ve doldur
+                return new Admin(AInfo);
+                
             }
             catch (FileNotFoundException)
             {
