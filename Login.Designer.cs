@@ -115,7 +115,7 @@
             Controls.Add(label1);
             Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Giriş Yap";
             ResumeLayout(false);
             PerformLayout();
         }

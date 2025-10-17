@@ -28,12 +28,27 @@ namespace AdminKütüphane
             this.Text = title;                    // Form başlığını ayarla
         }
 
+        private void ShowMainMenu()
+        {
+            PanelContainer.Controls.Clear(); // İçerik panelini temizle
+            PanelContainer.Dock = DockStyle.None; // Paneli doldurmayı durdur
+            this.Text = "Ana Sayfa";        // Form başlığını eski haline getir
+        }
+
 
 
         private void memberlist_Click(object sender, EventArgs e)
         {
             MemberListPage memberList = new MemberListPage();
+            memberList.BackButtonClicked += (s, args) => ShowMainMenu();
             ShowPage(memberList, "Üye Listesi");
+        }
+
+        private void booklist_Click(object sender, EventArgs e)
+        {
+            BookListPage bookList = new BookListPage();
+            //booklist.BackButtonClicked += (s, args) => ShowMainMenu();
+            ShowPage(bookList, "Kitap Listesi");
         }
     }
 }

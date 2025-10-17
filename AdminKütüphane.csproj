@@ -16,6 +16,9 @@
     <None Update="Datas\AdminBilgileri.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Datas\Kitaplar.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Datas\Üyeler.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

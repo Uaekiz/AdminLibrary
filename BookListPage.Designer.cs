@@ -1,6 +1,6 @@
 ﻿namespace AdminKütüphane
 {
-    partial class MemberListPage
+    partial class BookListPage
     {
         /// <summary> 
         ///Gerekli tasarımcı değişkeni.
@@ -28,48 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridViewUyeler = new DataGridView();
+            dataGridViewKitaplar = new DataGridView();
             TurnBack = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewUyeler).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).BeginInit();
             SuspendLayout();
             // 
-            // dataGridViewUyeler
+            // dataGridViewKitaplar
             // 
-            dataGridViewUyeler.ColumnHeadersHeight = 29;
-            dataGridViewUyeler.Location = new Point(50, 50);
-            dataGridViewUyeler.MultiSelect = false;
-            dataGridViewUyeler.Name = "dataGridViewUyeler";
-            dataGridViewUyeler.ReadOnly = true;
-            dataGridViewUyeler.RowHeadersWidth = 51;
-            dataGridViewUyeler.Size = new Size(1800, 900);
-            dataGridViewUyeler.TabIndex = 0;
+            dataGridViewKitaplar.ColumnHeadersHeight = 29;
+            dataGridViewKitaplar.Location = new Point(50, 50);
+            dataGridViewKitaplar.MultiSelect = false;
+            dataGridViewKitaplar.Name = "dataGridViewKitaplar";
+            dataGridViewKitaplar.ReadOnly = true;
+            dataGridViewKitaplar.RowHeadersWidth = 51;
+            dataGridViewKitaplar.Size = new Size(1800, 900);
+            dataGridViewKitaplar.TabIndex = 1;
             // 
             // TurnBack
             // 
             TurnBack.Location = new Point(50, 16);
             TurnBack.Name = "TurnBack";
             TurnBack.Size = new Size(40, 29);
-            TurnBack.TabIndex = 1;
+            TurnBack.TabIndex = 2;
             TurnBack.Text = "<";
             TurnBack.UseVisualStyleBackColor = true;
-            TurnBack.Click += TurnBack_Click;
             // 
-            // MemberListPage
+            // BookListPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
             Controls.Add(TurnBack);
-            Controls.Add(dataGridViewUyeler);
-            Name = "MemberListPage";
+            Controls.Add(dataGridViewKitaplar);
+            Name = "BookListPage";
             Size = new Size(1900, 1000);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewUyeler).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridViewUyeler;
+        private DataGridView dataGridViewKitaplar;
         private Button TurnBack;
     }
 }

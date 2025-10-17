@@ -7,6 +7,7 @@ namespace AdminKütüphane
     public partial class MemberListPage : UserControl
     {
         private UyeManager _uyeManager;
+        public event EventHandler BackButtonClicked;
 
         public MemberListPage()
         {
@@ -54,6 +55,11 @@ namespace AdminKütüphane
 
             // 5. Sütunların, panelin genişliğine göre otomatik olarak boyutlanmasını sağla.
             dataGridViewUyeler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void TurnBack_Click(object sender, EventArgs e)
+        {
+            BackButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

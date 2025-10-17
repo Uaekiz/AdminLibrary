@@ -63,6 +63,7 @@
             booklist.TabIndex = 2;
             booklist.Text = "Kitap Listesi";
             booklist.UseVisualStyleBackColor = true;
+            booklist.Click += booklist_Click;
             // 
             // PanelContainer
             // 
@@ -82,7 +83,7 @@
             Controls.Add(memberlist);
             Controls.Add(welcome);
             Name = "MainPage";
-            Text = "MainPage";
+            Text = "Ana Sayfa";
             ResumeLayout(false);
             PerformLayout();
         }
