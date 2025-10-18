@@ -30,6 +30,8 @@
         {
             dataGridViewKitaplar = new DataGridView();
             TurnBack = new Button();
+            searchingBox = new TextBox();
+            searchingButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).BeginInit();
             SuspendLayout();
             // 
@@ -52,22 +54,47 @@
             TurnBack.TabIndex = 2;
             TurnBack.Text = "<";
             TurnBack.UseVisualStyleBackColor = true;
+            TurnBack.Click += TurnBack_Click;
+            // 
+            // searchingBox
+            // 
+            searchingBox.Location = new Point(119, 16);
+            searchingBox.Name = "searchingBox";
+            searchingBox.PlaceholderText = "Kitap...";
+            searchingBox.Size = new Size(345, 27);
+            searchingBox.TabIndex = 3;
+            // 
+            // searchingButton
+            // 
+            searchingButton.Location = new Point(482, 16);
+            searchingButton.Name = "searchingButton";
+            searchingButton.Size = new Size(42, 27);
+            searchingButton.TabIndex = 4;
+            searchingButton.Text = "🔍";
+            searchingButton.UseVisualStyleBackColor = true;
+            searchingButton.Click += searchingButton_Click;
             // 
             // BookListPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
+            Controls.Add(searchingButton);
+            Controls.Add(searchingBox);
             Controls.Add(TurnBack);
             Controls.Add(dataGridViewKitaplar);
             Name = "BookListPage";
             Size = new Size(1900, 1000);
             ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridViewKitaplar;
         private Button TurnBack;
+        private TextBox searchingBox;
+        private Button searchingButton;
     }
 }

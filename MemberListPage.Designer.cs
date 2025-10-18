@@ -30,6 +30,8 @@
         {
             dataGridViewUyeler = new DataGridView();
             TurnBack = new Button();
+            searchingBox = new TextBox();
+            searchingButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewUyeler).BeginInit();
             SuspendLayout();
             // 
@@ -54,22 +56,45 @@
             TurnBack.UseVisualStyleBackColor = true;
             TurnBack.Click += TurnBack_Click;
             // 
+            // searchingBox
+            // 
+            searchingBox.Location = new Point(119, 16);
+            searchingBox.Name = "searchingBox";
+            searchingBox.PlaceholderText = "Üye...";
+            searchingBox.Size = new Size(345, 27);
+            searchingBox.TabIndex = 2;
+            // 
+            // searchingButton
+            // 
+            searchingButton.Location = new Point(482, 16);
+            searchingButton.Name = "searchingButton";
+            searchingButton.Size = new Size(42, 27);
+            searchingButton.TabIndex = 3;
+            searchingButton.Text = "🔍";
+            searchingButton.UseVisualStyleBackColor = true;
+            searchingButton.Click += searchingButton_Click;
+            // 
             // MemberListPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
+            Controls.Add(searchingButton);
+            Controls.Add(searchingBox);
             Controls.Add(TurnBack);
             Controls.Add(dataGridViewUyeler);
             Name = "MemberListPage";
             Size = new Size(1900, 1000);
             ((System.ComponentModel.ISupportInitialize)dataGridViewUyeler).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridViewUyeler;
         private Button TurnBack;
+        private TextBox searchingBox;
+        private Button searchingButton;
     }
 }

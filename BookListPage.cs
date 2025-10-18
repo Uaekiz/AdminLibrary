@@ -20,6 +20,7 @@ namespace AdminKütüphane
             InitializeComponent();
             _kitapManager = new KitapManager();
             this.Load += new System.EventHandler(this.BookListPage_Load);
+            dataGridViewKitaplar.CellFormatting += dataGridViewKitaplar_CellFormatting;
         }
 
         private void BookListPage_Load(object sender, EventArgs e)
@@ -65,11 +66,64 @@ namespace AdminKütüphane
 
             // 5. Sütunların, panelin genişliğine göre otomatik olarak boyutlanmasını sağla.
             dataGridViewKitaplar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void TurnBack_Click(object sender, EventArgs e)
         {
             BackButtonClicked?.Invoke(this, EventArgs.Empty);
         }
+
+        private void dataGridViewKitaplar_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Sadece satırların verisi bağlandıktan sonra çalışmasını sağla
+            if (e.RowIndex >= 0 && dataGridViewKitaplar.Rows[e.RowIndex].DataBoundItem is Kitap kitap)
+            {
+                // Kitap nesnesindeki 'Bulunma' özelliğini kontrol et
+                if (!kitap.Bulunma) // Eğer kitap bulunmuyorsa (false ise)
+                {
+                    // Tüm satırın arka plan rengini LightCoral yap
+                    dataGridViewKitaplar.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    // İsteğe bağlı: Durum sütunundaki metni de değiştirebilirsin
+                    if (dataGridViewKitaplar.Columns[e.ColumnIndex].DataPropertyName == "Bulunma")
+                    {
+                        e.Value = "Ödünç Verildi"; // Boolean yerine metin göster
+                        e.FormattingApplied = true; // Değeri bizim ayarladığımızı belirt
+                    }
+                }
+                else // Eğer kitap bulunuyorsa (true ise)
+                {
+                    // Tüm satırın arka plan rengini LightGreen yap
+                    dataGridViewKitaplar.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                    // İsteğe bağlı: Durum sütunundaki metni de değiştirebilirsin
+                    if (dataGridViewKitaplar.Columns[e.ColumnIndex].DataPropertyName == "Bulunma")
+                    {
+                        e.Value = "Mevcut"; // Boolean yerine metin göster
+                        e.FormattingApplied = true; // Değeri bizim ayarladığımızı belirt
+                    }
+                }
+            }
+            // Eğer satır veriye bağlı değilse (örn. yeni eklenen boş satır), rengi varsayılan yap
+            else if (e.RowIndex >= 0)
+            {
+                dataGridViewKitaplar.Rows[e.RowIndex].DefaultCellStyle.BackColor = SystemColors.Window;
+            }
+        }
+
+        private void searchingButton_Click(object sender, EventArgs e)
+        {
+            var searchingBook = _kitapManager.FindKitap(searchingBox.Text.Trim());
+            if (searchingBook != null)
+            {
+                dataGridViewKitaplar.DataSource = searchingBook;
+            }
+            else
+            {
+                // Eğer arama kutusu boşsa veya sonuç bulunamazsa, tüm kitapları göster
+                dataGridViewKitaplar.DataSource = _kitapManager.GetTumKitaplar();
+            }
+        }
+
+        
     }
 }

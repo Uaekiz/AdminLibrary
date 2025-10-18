@@ -23,5 +23,23 @@ namespace AdminKütüphane.Classes
             // İleride buraya filtreleme, sıralama gibi kurallar eklenebilir.
             return _uyeRepository.GetAllUyeler();
         }
+
+        public List<Uye> FindUye(string input)
+        {
+            var bulunanUyeler = new List<Uye>();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+            var tumUyeler = _uyeRepository.GetAllUyeler();
+            foreach(var uye in tumUyeler)
+            {
+                if(uye.UyeAdi.ToLower().Contains(input.ToLower()) || uye.UyeId.ToString() == input)
+                {
+                    bulunanUyeler.Add(uye);
+                }
+            }
+            return bulunanUyeler;
+        }
     }
 }

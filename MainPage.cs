@@ -47,7 +47,7 @@ namespace AdminKütüphane
         private void booklist_Click(object sender, EventArgs e)
         {
             BookListPage bookList = new BookListPage();
-            //booklist.BackButtonClicked += (s, args) => ShowMainMenu();
+            bookList.BackButtonClicked += (s, args) => ShowMainMenu();
             ShowPage(bookList, "Kitap Listesi");
         }
     }

@@ -19,5 +19,23 @@ namespace AdminKütüphane.Classes
         {
             return _kitapRepository.GetAllKitaplar();
         }
+
+        public List<Kitap> FindKitap(string input)
+        {
+            var bulunanKitaplar = new List<Kitap>();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+            var tumKitaplar = _kitapRepository.GetAllKitaplar();
+            foreach (var kitap in tumKitaplar)
+            {
+                if (kitap.KitapAdi.ToLower().Contains(input.ToLower()) || kitap.ISBN.ToString().Contains(input))
+                {
+                    bulunanKitaplar.Add(kitap);
+                }
+            }
+            return bulunanKitaplar;
+        }
     }
 }

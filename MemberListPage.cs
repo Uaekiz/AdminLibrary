@@ -55,11 +55,26 @@ namespace AdminKütüphane
 
             // 5. Sütunların, panelin genişliğine göre otomatik olarak boyutlanmasını sağla.
             dataGridViewUyeler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void TurnBack_Click(object sender, EventArgs e)
         {
             BackButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void searchingButton_Click(object sender, EventArgs e)
+        {
+            var searchingUye = _uyeManager.FindUye(searchingBox.Text.Trim());
+            if(searchingUye != null)
+            {
+                dataGridViewUyeler.DataSource = searchingUye;
+            }
+            else
+            {
+                // Aranan üye bulunamazsa tüm üyeleri tekrar listele
+                dataGridViewUyeler.DataSource = _uyeManager.GetTumUyeler();
+            }
         }
     }
 }
