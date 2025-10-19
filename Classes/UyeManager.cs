@@ -32,14 +32,22 @@ namespace AdminKütüphane.Classes
                 return null;
             }
             var tumUyeler = _uyeRepository.GetAllUyeler();
-            foreach(var uye in tumUyeler)
+            foreach (var uye in tumUyeler)
             {
-                if(uye.UyeAdi.ToLower().Contains(input.ToLower()) || uye.UyeId.ToString() == input)
+                if (uye.UyeAdi.ToLower().Contains(input.ToLower()) || uye.UyeId.ToString() == input)
                 {
                     bulunanUyeler.Add(uye);
                 }
             }
             return bulunanUyeler;
+        }
+
+        public Uye GetElementById(int id)
+        {
+            {
+                var searchingOne = _uyeRepository.GetAllUyeler().FirstOrDefault(s => id == s.UyeId);
+                return searchingOne;
+            }
         }
     }
 }

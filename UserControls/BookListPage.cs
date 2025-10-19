@@ -119,7 +119,6 @@ namespace AdminKütüphane
             }
             else
             {
-                // Eğer arama kutusu boşsa veya sonuç bulunamazsa, tüm kitapları göster
                 dataGridViewKitaplar.DataSource = _kitapManager.GetTumKitaplar();
             }
         }

@@ -8,6 +8,7 @@ namespace AdminKütüphane
     {
         private UyeManager _uyeManager;
         public event EventHandler BackButtonClicked;
+        public event EventHandler<int> UyeSecildi;
 
         public MemberListPage()
         {
@@ -15,6 +16,7 @@ namespace AdminKütüphane
             _uyeManager = new UyeManager();
 
             this.Load += new System.EventHandler(this.MemberListPage_Load);
+            this.dataGridViewUyeler.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUyeler_CellDoubleClick);
         }
 
         // Bu metot, UserControl yüklendiğinde otomatik olarak çalışır.
@@ -56,6 +58,22 @@ namespace AdminKütüphane
             // 5. Sütunların, panelin genişliğine göre otomatik olarak boyutlanmasını sağla.
             dataGridViewUyeler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+        }
+
+        private void dataGridViewUyeler_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // e.RowIndex < 0 ise başlık satırına tıklanmıştır, onu istemiyoruz.
+            if (e.RowIndex >= 0)
+            {
+                // 1. Tıklanan satırın veri nesnesini al (bu bir Uye nesnesi)
+                Uye secilenUye = dataGridViewUyeler.Rows[e.RowIndex].DataBoundItem as Uye;
+
+                if (secilenUye != null)
+                {
+                    // 2. MainPage'e haber ver, ID'yi gönder!
+                    UyeSecildi?.Invoke(this, secilenUye.UyeId);
+                }
+            }
         }
 
         private void TurnBack_Click(object sender, EventArgs e)
